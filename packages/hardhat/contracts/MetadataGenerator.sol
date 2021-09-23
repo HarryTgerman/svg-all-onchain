@@ -13,6 +13,12 @@ library MetadataGenerator {
     using HexStrings for uint160;
     using ToColor for bytes3;
 
+    function statsBar(uint chubbiness) internal pure returns (string memory) {
+        string memory line = '<line x1="0" y1="300" x2="400" y2="300" stroke="black" />';
+        string memory text = string(abi.encodePacked('<text x="50%" y="350" class="base" dominant-baseline="middle" text-anchor="middle">chubbiness: ', chubbiness.toString(), '</text>'));
+        return string(abi.encodePacked(line, text));
+    }
+
     function batchGenerator(uint8 batch) internal pure returns (string memory) {
         string memory encodedSVG = "";
         if (batch == 1) {
@@ -75,6 +81,7 @@ library MetadataGenerator {
                         '<ellipse ry="3.5" rx="3" id="svg_4" cy="169.5" cx="208" stroke-width="3" fill="#000000" stroke="#000"/>',
                         "</g>",
                         batchGenerator(batch),
+                        statsBar(chubbiness),
                         "</svg>"
                     )
                 )
