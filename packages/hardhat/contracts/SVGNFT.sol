@@ -25,6 +25,7 @@ contract SVGNFT is ERC721, Ownable {
 
     function updateMonster(uint256 tokenId) public onlyOwner {
         monsters[tokenId].batch++;
+        monsters[tokenId].chubbiness++;
     }
 
     function create(uint8 color, uint256 chubbiness) public {
