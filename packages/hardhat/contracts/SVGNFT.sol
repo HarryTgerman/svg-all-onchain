@@ -18,7 +18,7 @@ contract SVGNFT is ERC721, Ownable {
     }
 
     struct Monster {
-        bytes3 color;
+        uint8 color;
         uint256 chubbiness;
         uint8 batch;
     }
@@ -27,9 +27,9 @@ contract SVGNFT is ERC721, Ownable {
         monsters[tokenId].batch++;
     }
 
-    function create(bytes3 color, uint256 chubbiness) public {
-        _safeMint(msg.sender, tokenCounter);
+    function create(uint8 color, uint256 chubbiness) public {
         monsters.push(Monster(color, chubbiness, 0));
+        _safeMint(msg.sender, tokenCounter);
         tokenCounter = tokenCounter + 1;
         emit CreatedMonster(tokenCounter);
     }

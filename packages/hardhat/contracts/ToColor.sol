@@ -1,7 +1,7 @@
 library ToColor {
     bytes16 internal constant ALPHABET = "0123456789abcdef";
 
-    function toColor(bytes3 value) internal pure returns (string memory) {
+    function toColor(bytes32 value) internal pure returns (string memory) {
         bytes memory buffer = new bytes(6);
         for (uint256 i = 0; i < 3; i++) {
             buffer[i * 2 + 1] = ALPHABET[uint8(value[i]) & 0xf];

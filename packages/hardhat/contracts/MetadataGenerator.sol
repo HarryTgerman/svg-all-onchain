@@ -26,10 +26,20 @@ library MetadataGenerator {
         }
     }
 
+    function getColor(uint8 colorindex) internal pure returns (string memory) {
+        if (colorindex == 1) {
+            return "ffffff";
+        } else if (colorindex == 2) {
+            return "FF78A9";
+        } else {
+            return "000000";
+        }
+    }
+
     function tokenURI(
         address owner,
         uint256 tokenId,
-        bytes3 color,
+        uint8 color,
         uint256 chubbiness,
         uint8 batch
     ) internal pure returns (string memory) {
@@ -46,7 +56,7 @@ library MetadataGenerator {
     function svgToImageURI(
         address owner,
         uint256 tokenId,
-        bytes3 color,
+        uint8 color,
         uint256 chubbiness,
         uint8 batch
     ) public pure returns (string memory) {
@@ -65,7 +75,7 @@ library MetadataGenerator {
                         "</g>",
                         '<g id="head">',
                         '<ellipse fill="#',
-                        color.toColor(),
+                        getColor(color),
                         '" stroke-width="3" cx="204.5" cy="211.80065" id="svg_5" rx="',
                         chubbiness.toString(),
                         '" ry="51.80065" stroke="#000"/>',
